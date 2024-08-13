@@ -25,10 +25,9 @@ public class DataClass {
 
 
 
-    public DataClass(String dataTitle, String imagemProduto, String nomeProduto) {
-        this.dataTitle = dataTitle;
-        this.imagemProduto = imagemProduto;
+    public DataClass(String nomeProduto, String quantidadeProduto, String imagemProduto) {
         this.nomeProduto = nomeProduto;
         this.quantidadeProduto = quantidadeProduto;
+        this.imagemProduto = imagemProduto;
     }
 }
