@@ -40,8 +40,8 @@
 
     <ImageView
         android:id="@+id/uploadimg"
-        android:layout_width="133dp"
-        android:layout_height="129dp"
+        android:layout_width="227dp"
+        android:layout_height="149dp"
         android:clickable="true"
         android:contentDescription="IMG"
         android:src="@mipmap/upload_image_round"

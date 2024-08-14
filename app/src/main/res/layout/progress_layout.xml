@@ -13,7 +13,7 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="4"
-        android:text="Loading..."
+        android:text="Carregando..."
         android:textSize="18sp"
         android:textColor="@color/light_blue"
         android:gravity="start|center_vertical"/>

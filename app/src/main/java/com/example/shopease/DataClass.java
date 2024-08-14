@@ -2,14 +2,10 @@ package com.example.shopease;
 
 public class DataClass {
 
-    private String dataTitle;
     private String imagemProduto;
     private String nomeProduto;
 
     private String quantidadeProduto;
-    public String getDataTitle() {
-        return dataTitle;
-    }
 
     public String getImagemProduto() {
         return imagemProduto;
@@ -29,5 +25,8 @@ public class DataClass {
         this.nomeProduto = nomeProduto;
         this.quantidadeProduto = quantidadeProduto;
         this.imagemProduto = imagemProduto;
+    }
+    public DataClass(){
+
     }
 }
