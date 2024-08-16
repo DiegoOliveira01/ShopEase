@@ -3,6 +3,8 @@
     <color name="light_blue">#0963FF</color>
     <color name="medium_blue">#032EF0</color>
     <color name="dark_blue">#0D0098</color>
+    <color name="red">#D10000</color>
+    <color name="green">#49CF01</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 </resources>

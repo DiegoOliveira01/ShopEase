@@ -26,7 +26,7 @@
         android:padding="8dp"
         android:layout_gravity="center"
         android:src="@mipmap/upload_image"
-        android:scaleType="fitXY"/>
+        android:scaleType="fitCenter"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -39,4 +39,60 @@
         android:textSize="18sp"
         android:textColor="@color/light_blue"/>
 
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="553dp">
+
+        <com.github.clans.fab.FloatingActionMenu
+            android:id="@+id/floatingActionMenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="22dp"
+            android:layout_marginBottom="214dp"
+            app:menu_colorNormal="@color/light_blue"
+            app:menu_colorPressed="@color/light_blue"
+            app:menu_icon="@drawable/ic_baseline_format_list_bullested_24"
+            app:menu_openDirection="up"
+            app:menu_showShadow="true" />
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/editButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="321dp"
+            android:layout_marginTop="335dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginBottom="148dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_baseline_edit_24"
+            app:fabSize="mini"
+            app:fab_colorNormal="@color/green"
+            app:fab_showShadow="true" />
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/deleteButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="322dp"
+            android:layout_marginTop="424dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="59dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_baseline_delete_24"
+            app:fabSize="mini"
+            app:fab_colorNormal="@color/red"
+            app:fab_showShadow="true" />
+
+    </RelativeLayout>
 </LinearLayout>
