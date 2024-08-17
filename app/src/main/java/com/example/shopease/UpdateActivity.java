@@ -109,29 +109,39 @@ public class UpdateActivity extends AppCompatActivity {
         });
     }
     public void saveData(){
-        storageReference = FirebaseStorage.getInstance().getReference().child("produtos").child(Objects.requireNonNull(uri.getLastPathSegment()));
-
         AlertDialog.Builder builder = new AlertDialog.Builder(UpdateActivity.this);
         builder.setView(R.layout.progress_layout);
         AlertDialog dialog = builder.create();
         dialog.show();
 
-        storageReference.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                Task<Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();
-                while (!uriTask.isComplete());
-                Uri urlImage = uriTask.getResult();
-                imageUrl = urlImage.toString();
-                updateData();
-                dialog.dismiss();
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                dialog.dismiss();
-            }
-        });
+        // Verifica se uma nova imagem foi selecionada
+        if (uri != null) {
+            // Novo upload de imagem
+            storageReference = FirebaseStorage.getInstance().getReference().child("produtos").child(Objects.requireNonNull(uri.getLastPathSegment()));
+
+            storageReference.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    Task<Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();
+                    while (!uriTask.isComplete());
+                    Uri urlImage = uriTask.getResult();
+                    imageUrl = urlImage.toString();
+                    updateData();
+                    dialog.dismiss();
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    dialog.dismiss();
+                    Toast.makeText(UpdateActivity.this, "Falha no upload da imagem", Toast.LENGTH_SHORT).show();
+                }
+            });
+        } else {
+            // Nenhuma nova imagem foi selecionada, usa o URL da imagem antiga
+            imageUrl = oldImageURL;
+            updateData();
+            dialog.dismiss();
+        }
     }
     public void updateData(){
         title = updateTitle.getText().toString().trim();

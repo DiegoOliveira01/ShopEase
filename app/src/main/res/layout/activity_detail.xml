@@ -1,98 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/background_tela_inicial"
     tools:context=".DetailActivity">
 
-    <TextView
+
+    <com.github.clans.fab.FloatingActionButton
+        android:id="@+id/deleteButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/detailTitle"
-        android:text="Title"
-        android:layout_marginTop="12dp"
-        android:textSize="24sp"
-        android:layout_gravity="center"
-        android:layout_marginBottom="12dp"
-        android:textColor="@color/light_blue"/>
-    
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_baseline_delete_24"
+        app:fabSize="mini"
+        app:fab_colorNormal="@color/red"
+        app:fab_showShadow="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.962"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view5"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <com.github.clans.fab.FloatingActionButton
+        android:id="@+id/editButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_baseline_edit_24"
+        app:fabSize="mini"
+        app:fab_colorNormal="@color/green"
+        app:fab_showShadow="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view5"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <com.github.clans.fab.FloatingActionMenu
+        android:id="@+id/floatingActionMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.046"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view5"
+        app:layout_constraintVertical_bias="0.0"
+        app:menu_colorNormal="@color/light_blue"
+        app:menu_colorPressed="@color/light_blue"
+        app:menu_icon="@drawable/ic_baseline_format_list_bullested_24"
+        app:menu_openDirection="down"
+        app:menu_showShadow="true">
+
+    </com.github.clans.fab.FloatingActionMenu>
+
+    <View
+        android:id="@+id/view5"
+        android:layout_width="382dp"
+        android:layout_height="575dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.551"
+        app:layout_constraintStart_toStartOf="parent"
+        android:background="@drawable/rounded_top_bottom"
+        android:outlineAmbientShadowColor="@color/black"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.129" />
+
     <ImageView
-        android:layout_width="400dp"
-        android:layout_height="200dp"
         android:id="@+id/detailImage"
-        android:padding="8dp"
+        android:layout_width="282dp"
+        android:layout_height="162dp"
         android:layout_gravity="center"
+        android:background="@drawable/blue_border"
+        android:padding="8dp"
+        android:scaleType="fitCenter"
         android:src="@mipmap/upload_image"
-        android:scaleType="fitCenter"/>
+        app:layout_constraintBottom_toBottomOf="@+id/view5"
+        app:layout_constraintEnd_toEndOf="@+id/view5"
+        app:layout_constraintHorizontal_bias="0.48"
+        app:layout_constraintStart_toStartOf="@+id/view5"
+        app:layout_constraintTop_toTopOf="@+id/view5"
+        app:layout_constraintVertical_bias="0.196" />
 
     <TextView
-        android:layout_width="match_parent"
+        android:id="@+id/detailTitle"
+        android:layout_width="270dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:background="@drawable/blue_border"
+        android:padding="10dp"
+        android:text="Title"
+        android:textAlignment="center"
+        android:textColor="@color/light_blue"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/detailImage"
+        app:layout_constraintEnd_toEndOf="@+id/view5"
+        app:layout_constraintStart_toStartOf="@+id/view5"
+        app:layout_constraintTop_toTopOf="@+id/view5" />
+
+    <TextView
+        android:id="@+id/detailDesc"
+        android:layout_width="341dp"
+        android:layout_height="103dp"
+        android:layout_gravity="center"
         android:padding="20dp"
         android:text="Description"
-        android:layout_gravity="center"
-        android:id="@+id/detailDesc"
+        android:textColor="@color/light_blue"
         android:textSize="18sp"
-        android:textColor="@color/light_blue"/>
+        app:layout_constraintBottom_toBottomOf="@+id/view5"
+        app:layout_constraintEnd_toEndOf="@+id/view5"
+        app:layout_constraintHorizontal_bias="0.463"
+        app:layout_constraintStart_toStartOf="@+id/view5"
+        app:layout_constraintTop_toTopOf="@+id/view5"
+        app:layout_constraintVertical_bias="0.546" />
 
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="553dp">
-
-        <com.github.clans.fab.FloatingActionMenu
-            android:id="@+id/floatingActionMenu"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginEnd="22dp"
-            android:layout_marginBottom="214dp"
-            app:menu_colorNormal="@color/light_blue"
-            app:menu_colorPressed="@color/light_blue"
-            app:menu_icon="@drawable/ic_baseline_format_list_bullested_24"
-            app:menu_openDirection="up"
-            app:menu_showShadow="true" />
-
-        <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/editButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="321dp"
-            android:layout_marginTop="335dp"
-            android:layout_marginEnd="25dp"
-            android:layout_marginBottom="148dp"
-            android:scaleType="fitCenter"
-            android:src="@drawable/ic_baseline_edit_24"
-            app:fabSize="mini"
-            app:fab_colorNormal="@color/green"
-            app:fab_showShadow="true" />
-
-        <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/deleteButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="322dp"
-            android:layout_marginTop="424dp"
-            android:layout_marginEnd="24dp"
-            android:layout_marginBottom="59dp"
-            android:scaleType="fitCenter"
-            android:src="@drawable/ic_baseline_delete_24"
-            app:fabSize="mini"
-            app:fab_colorNormal="@color/red"
-            app:fab_showShadow="true" />
-
-    </RelativeLayout>
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

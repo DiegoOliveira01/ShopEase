@@ -28,4 +28,12 @@ public class TelaInicial extends AppCompatActivity {
         Intent in = new Intent(TelaInicial.this, MainActivity.class);
         startActivity(in);
     }
+
+    @Override
+    public void onBackPressed() {
+        // Finaliza o aplicativo
+        super.onBackPressed();
+        finishAffinity();
+    }
+
 }

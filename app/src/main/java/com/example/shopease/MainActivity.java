@@ -119,4 +119,16 @@ public class MainActivity extends AppCompatActivity {
         }
         adapter.searchDataList(searchList);
     }
+
+    @Override
+    public void onBackPressed() {
+        // Inicia a TelaInicial
+        super.onBackPressed();
+        Intent intent = new Intent(MainActivity.this, TelaInicial.class);
+        startActivity(intent);
+        Log.d("MainActivity", "Voltar Para A Tela De Inicio");
+        // Finaliza a MainActivity atual
+        finish();
+    }
+
 }

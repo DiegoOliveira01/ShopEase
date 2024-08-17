@@ -37,11 +37,10 @@
         android:id="@+id/view"
         android:layout_width="412dp"
         android:layout_height="104dp"
-        android:layout_marginBottom="4dp"
         android:background="@drawable/rounded_top"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.571"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
@@ -49,9 +48,10 @@
         android:layout_width="262dp"
         android:layout_height="69dp"
         android:layout_marginBottom="16dp"
-        android:backgroundTint="#1E47AE"
+        android:backgroundTint="#578CE8"
+        android:textColor="@color/white"
         android:onClick="iniciar_app"
-        android:text="Iniciar"
+        android:text="Iniciar App"
         android:textSize="22dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
