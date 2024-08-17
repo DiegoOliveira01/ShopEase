@@ -34,7 +34,9 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Locale;
 import java.util.Objects;
 
 public class UploadActivity extends AppCompatActivity {
@@ -127,16 +129,25 @@ public class UploadActivity extends AppCompatActivity {
         String nome = nomeProduto.getText().toString();
         String quant = quantidadeProduto.getText().toString();
 
+        if (nome.isEmpty() || quant.isEmpty()) {
+            Toast.makeText(this, "Please fill out all fields", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         DataClass dataClass = new DataClass(nome, quant, imageURL);
 
-        String currentDate = DateFormat.getDateTimeInstance().format(Calendar.getInstance().getTime());
+        // Formatar a data para um formato seguro para o Firebase
+        String currentDate = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Calendar.getInstance().getTime());
 
-        FirebaseDatabase.getInstance().getReference("produtos").child(currentDate)
+        // Usar a combinação do nome do produto e data como chave
+        String productKey = nome + "_" + currentDate;
+
+        FirebaseDatabase.getInstance().getReference("produtos").child(productKey)
                 .setValue(dataClass).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()){
-                            Toast.makeText(UploadActivity.this, "Saved", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(UploadActivity.this, "Produto Salvo Com Sucesso!", Toast.LENGTH_SHORT).show();
                             finish();
                         }
                     }
