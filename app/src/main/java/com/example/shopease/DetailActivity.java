@@ -27,7 +27,7 @@ public class DetailActivity extends AppCompatActivity {
 
     TextView detailDesc, detailTitle;
     ImageView detailImage;
-    FloatingActionButton deleteButton;
+    FloatingActionButton deleteButton, editButton;
     String key = "";
     String imageUrl = "";
     @Override
@@ -44,6 +44,7 @@ public class DetailActivity extends AppCompatActivity {
         detailImage = findViewById(R.id.detailImage);
         detailTitle = findViewById(R.id.detailTitle);
         deleteButton = findViewById(R.id.deleteButton);
+        editButton = findViewById(R.id.editButton);
 
         Bundle bundle = getIntent().getExtras();
         if (bundle != null){
@@ -69,6 +70,19 @@ public class DetailActivity extends AppCompatActivity {
                         finish();
                     }
                 });
+            }
+        });
+        editButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DetailActivity.this, UpdateActivity.class)
+                        .putExtra("nomeProduto", detailTitle.getText().toString())
+                        .putExtra("quantidadeProduto", detailDesc.getText().toString())
+                        .putExtra("imagemProduto", imageUrl)
+                        .putExtra("key", key);
+                startActivity(intent);
+
+
             }
         });
     }

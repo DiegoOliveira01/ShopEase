@@ -33,6 +33,8 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.text.DateFormat;
+import java.util.Calendar;
 import java.util.Objects;
 
 public class UploadActivity extends AppCompatActivity {
@@ -127,7 +129,9 @@ public class UploadActivity extends AppCompatActivity {
 
         DataClass dataClass = new DataClass(nome, quant, imageURL);
 
-        FirebaseDatabase.getInstance().getReference("produtos").child(nome)
+        String currentDate = DateFormat.getDateTimeInstance().format(Calendar.getInstance().getTime());
+
+        FirebaseDatabase.getInstance().getReference("produtos").child(currentDate)
                 .setValue(dataClass).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {

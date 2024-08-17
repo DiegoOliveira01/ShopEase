@@ -5,6 +5,129 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:background="@drawable/background_tela_inicial"
     tools:context=".UpdateActivity">
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="375dp"
+        android:layout_height="823dp"
+        android:background="@drawable/rounded_top"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.941">
+
+
+    </View>
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Upload da imagem"
+        android:textSize="24dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/view2"
+        app:layout_constraintEnd_toEndOf="@+id/view2"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="@+id/view2"
+        app:layout_constraintTop_toTopOf="@+id/view2"
+        app:layout_constraintVertical_bias="0.061" />
+
+    <ImageView
+        android:id="@+id/updateImage"
+        android:layout_width="227dp"
+        android:layout_height="149dp"
+        android:clickable="true"
+        android:contentDescription="IMG"
+        android:src="@mipmap/upload_image_round"
+        app:layout_constraintBottom_toBottomOf="@+id/view2"
+        app:layout_constraintEnd_toEndOf="@+id/view2"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="@+id/view2"
+        app:layout_constraintTop_toBottomOf="@+id/textView7"
+        app:layout_constraintVertical_bias="0.084" />
+
+    <EditText
+        android:id="@+id/updateNome"
+        android:layout_width="265dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="76dp"
+        android:ems="10"
+        android:background="@drawable/blue_border"
+        android:paddingLeft="12dp"
+        android:inputType="text"
+        android:hint="Nome:"
+        android:tooltipText="Nome"
+        app:layout_constraintEnd_toEndOf="@+id/view2"
+        app:layout_constraintStart_toStartOf="@+id/view2"
+        app:layout_constraintTop_toBottomOf="@+id/updateImage" />
+
+    <EditText
+        android:id="@+id/updateQuant"
+        android:layout_width="265dp"
+        android:layout_height="56dp"
+        android:ems="10"
+        android:background="@drawable/blue_border"
+        android:paddingLeft="12dp"
+        android:inputType="text"
+        android:hint="Quantidade ou peso:"
+        app:layout_constraintBottom_toBottomOf="@+id/view2"
+        app:layout_constraintEnd_toEndOf="@+id/view2"
+        app:layout_constraintStart_toStartOf="@+id/view2"
+        app:layout_constraintTop_toBottomOf="@+id/updateNome"
+        app:layout_constraintVertical_bias="0.184" />
+
+    <Button
+        android:id="@+id/updateButton"
+        android:layout_width="204dp"
+        android:layout_height="58dp"
+        android:backgroundTint="@color/light_blue"
+        android:text="Atualizar"
+        android:textSize="24dp"
+        app:layout_constraintBottom_toBottomOf="@+id/view2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/updateQuant"
+        app:layout_constraintVertical_bias="0.931" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="229dp"
+        android:layout_height="51dp"
+        android:gravity="bottom"
+        android:paddingLeft="3.8dp"
+        android:paddingBottom="10dp"
+        android:text="Nome do produto:"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/updateNome"
+        app:layout_constraintEnd_toEndOf="@+id/view2"
+        app:layout_constraintHorizontal_bias="0.376"
+        app:layout_constraintStart_toStartOf="@+id/view2"
+        app:layout_constraintTop_toBottomOf="@+id/updateImage"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="229dp"
+        android:layout_height="51dp"
+        android:text="Quantidade ou peso do produto:"
+        android:gravity="bottom"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:paddingLeft="3.8dp"
+        android:paddingBottom="6dp"
+        app:layout_constraintBottom_toTopOf="@+id/updateQuant"
+        app:layout_constraintEnd_toEndOf="@+id/view2"
+        app:layout_constraintHorizontal_bias="0.376"
+        app:layout_constraintStart_toStartOf="@+id/view2"
+        app:layout_constraintTop_toBottomOf="@+id/updateNome"
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
