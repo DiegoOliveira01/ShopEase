@@ -11,23 +11,25 @@
         android:id="@+id/search"
         android:layout_width="386dp"
         android:layout_height="56dp"
+        android:layout_gravity="center_vertical"
         android:background="@drawable/blue_border"
         android:focusable="false"
+        app:closeIcon="@drawable/ic_baseline_clear_24"
         app:iconifiedByDefault="false"
         app:layout_constraintBottom_toTopOf="@+id/recylerView"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.48"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.215"
         app:queryHint="Pesquise..."
         app:searchHintIcon="@null"
-        app:searchIcon="@drawable/ic_baseline_search_24"
-        app:closeIcon="@drawable/ic_baseline_clear_24"
-        android:layout_gravity="center_vertical" />
+        app:searchIcon="@drawable/ic_baseline_search_24" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recylerView"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_width="413dp"
+        android:layout_height="719dp"
         android:layout_marginTop="68dp"
         android:maxHeight="100dp"
         android:scrollbars="vertical"
@@ -50,4 +52,15 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.924"
         app:srcCompat="@android:drawable/ic_input_add" />
+
+    <Spinner
+        android:id="@+id/category_spinner"
+        android:layout_width="370dp"
+        android:layout_height="31dp"
+        app:layout_constraintBottom_toTopOf="@+id/recylerView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/search"
+        app:layout_constraintVertical_bias="0.316" />
 </androidx.constraintlayout.widget.ConstraintLayout>

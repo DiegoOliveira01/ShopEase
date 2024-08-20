@@ -6,6 +6,7 @@ public class DataClass {
     private String nomeProduto;
     private String quantidadeProduto;
     private String key;
+    private String categoria;  // Campo de categoria
 
     public String getKey() {
         return key;
@@ -27,6 +28,12 @@ public class DataClass {
         return quantidadeProduto;
     }
 
+    public String getCategoria() {
+        return categoria;
+    }
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
 
 
     public DataClass(String nomeProduto, String quantidadeProduto, String imagemProduto) {

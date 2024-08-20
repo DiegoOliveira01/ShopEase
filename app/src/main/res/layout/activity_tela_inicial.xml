@@ -62,7 +62,7 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Versão_0.8.0_Beta"
+        android:text="Versão_0.8.6_Beta"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/view"
         app:layout_constraintEnd_toEndOf="parent"

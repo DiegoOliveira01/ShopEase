@@ -44,7 +44,7 @@ public class UploadActivity extends AppCompatActivity {
 
     ImageView uploadimg;
     Button saveButton;
-    EditText nomeProduto, quantidadeProduto;
+    EditText nomeProduto, quantidadeProduto, categoriaProduto;
     String imageURL;
     Uri uri;
     ToggleButton toggleButton;
@@ -66,6 +66,7 @@ public class UploadActivity extends AppCompatActivity {
         quantidadeProduto = findViewById(R.id.quantidadeProduto);
         saveButton = findViewById(R.id.saveButton);
         toggleButton = findViewById(R.id.toggleButton);
+        categoriaProduto = findViewById(R.id.categoriaProduto);
 
         toggleButton.setChecked(false);
         quantidadeProduto.setHint("Quantidade:");
@@ -155,6 +156,7 @@ public class UploadActivity extends AppCompatActivity {
         String quant = quantidadeProduto.getText().toString();
         float quantidadeValor = Float.parseFloat(quant);
         String sufixo;
+        String categoria = categoriaProduto.getText().toString(); // Obtenha a categoria
 
         if (nome.isEmpty() || quant.isEmpty()) { // Impossibilita de enviar nome ou quantidade Vazio
             Toast.makeText(this, "Por favor preencha todos os campos.", Toast.LENGTH_SHORT).show();
@@ -179,6 +181,7 @@ public class UploadActivity extends AppCompatActivity {
 
 
         DataClass dataClass = new DataClass(nome, textoComSufixo, imageURL);
+        dataClass.setCategoria(categoria); // Defina a categoria
 
         // Formatar a data para um formato seguro para o Firebase
         String currentDate = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Calendar.getInstance().getTime());
