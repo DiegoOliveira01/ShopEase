@@ -23,6 +23,23 @@
 
     </View>
 
+    <ToggleButton
+        android:id="@+id/updateToggleButton"
+        android:layout_width="106dp"
+        android:layout_height="33dp"
+        android:background="@drawable/rounded_top_bottom"
+        android:backgroundTint="@color/white"
+        android:text="ToggleButton"
+        android:textOff="Quantidade"
+        android:textOn="Peso"
+        android:textSize="12dp"
+        app:layout_constraintBottom_toTopOf="@+id/updateButton"
+        app:layout_constraintEnd_toEndOf="@+id/view2"
+        app:layout_constraintHorizontal_bias="0.754"
+        app:layout_constraintStart_toStartOf="@+id/view2"
+        app:layout_constraintTop_toTopOf="@+id/view2"
+        app:layout_constraintVertical_bias="0.68" />
+
     <TextView
         android:id="@+id/textView7"
         android:layout_width="wrap_content"

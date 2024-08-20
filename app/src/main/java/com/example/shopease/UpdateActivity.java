@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import androidx.activity.EdgeToEdge;
 import androidx.activity.result.ActivityResult;
@@ -41,6 +42,7 @@ public class UpdateActivity extends AppCompatActivity {
     ImageView updateImage;
     Button updateButton;
     EditText updateDesc, updateTitle;
+    ToggleButton updateToggleButton;
     String title, desc;
     String imageUrl;
     String key, oldImageURL;
@@ -62,6 +64,22 @@ public class UpdateActivity extends AppCompatActivity {
         updateDesc = findViewById(R.id.updateQuant);
         updateImage = findViewById(R.id.updateImage);
         updateTitle = findViewById(R.id.updateNome);
+        updateToggleButton = findViewById(R.id.updateToggleButton);
+
+        updateToggleButton.setChecked(false);
+        updateDesc.setInputType(android.text.InputType.TYPE_CLASS_NUMBER); // Iniciar aceitando somente inteiros
+        updateToggleButton.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
+                // Quando o toggleButton estiver marcado (modo "Peso")
+                updateDesc.setHint("Peso:");
+                updateDesc.setInputType(android.text.InputType.TYPE_CLASS_NUMBER | android.text.InputType.TYPE_NUMBER_FLAG_DECIMAL); // Aceitar números decimais
+            } else {
+                // Quando o toggleButton estiver desmarcado (modo "Quantidade")
+                updateDesc.setHint("Quantidade:");
+                updateDesc.setInputType(android.text.InputType.TYPE_CLASS_NUMBER); // Aceitar somente inteiros
+            }
+        });
+
 
         ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
@@ -84,7 +102,9 @@ public class UpdateActivity extends AppCompatActivity {
         if (bundle != null){
             Glide.with(UpdateActivity.this).load(bundle.getString("imagemProduto")).into(updateImage);
             updateTitle.setText(bundle.getString("nomeProduto"));
-            updateDesc.setText(bundle.getString("quantidadeProduto"));
+            String quantidadeComSufixo = bundle.getString("quantidadeProduto");
+            String quantidadeSemSufixo = removerSufixo(quantidadeComSufixo);
+            updateDesc.setText(quantidadeSemSufixo);
             key = bundle.getString("key");
             oldImageURL = bundle.getString("imagemProduto");
         }
@@ -146,8 +166,31 @@ public class UpdateActivity extends AppCompatActivity {
     public void updateData(){
         title = updateTitle.getText().toString().trim();
         desc = updateDesc.getText().toString().trim();
+        float quantidadeValor = Float.parseFloat(desc);
+        String sufixo;
 
-        DataClass dataClass = new DataClass(title, desc, imageUrl);
+
+        if (title.isEmpty() || desc.isEmpty()) {
+            Toast.makeText(this, "Por favor preencha todos os campos.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+
+        if (updateToggleButton.isChecked()) {
+            // Quando estiver no modo "Peso"
+            if (quantidadeValor > 10) {
+                sufixo = " gramas"; // Define o sufixo como gramas
+                desc = String.valueOf((int) quantidadeValor); // Remove casas decimais, se necessário
+            } else {
+                sufixo = " kg"; // Define o sufixo como kg
+            }
+        } else {
+            // Quando estiver no modo "Quantidade"
+            sufixo = " unidades";
+        }
+        String textoComSufixo = desc + sufixo;
+
+        DataClass dataClass = new DataClass(title, textoComSufixo, imageUrl);
 
         databaseReference.setValue(dataClass).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
@@ -165,5 +208,17 @@ public class UpdateActivity extends AppCompatActivity {
                 Toast.makeText(UpdateActivity.this, e.getMessage().toString(), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+    //M
+    private String removerSufixo(String quantidadeComSufixo) {
+        // Remover qualquer um dos sufixos possíveis
+        if (quantidadeComSufixo.endsWith(" unidades")) {
+            return quantidadeComSufixo.replace(" unidades", "");
+        } else if (quantidadeComSufixo.endsWith(" gramas")) {
+            return quantidadeComSufixo.replace(" gramas", "");
+        } else if (quantidadeComSufixo.endsWith(" kg")) {
+            return quantidadeComSufixo.replace(" kg", "");
+        }
+        return quantidadeComSufixo; // Retorna a quantidade sem o sufixo
     }
 }

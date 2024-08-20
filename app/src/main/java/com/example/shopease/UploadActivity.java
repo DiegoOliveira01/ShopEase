@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import androidx.activity.EdgeToEdge;
 import androidx.activity.result.ActivityResult;
@@ -46,6 +47,7 @@ public class UploadActivity extends AppCompatActivity {
     EditText nomeProduto, quantidadeProduto;
     String imageURL;
     Uri uri;
+    ToggleButton toggleButton;
 
 
     @Override
@@ -63,6 +65,24 @@ public class UploadActivity extends AppCompatActivity {
         nomeProduto = findViewById(R.id.nomeProduto);
         quantidadeProduto = findViewById(R.id.quantidadeProduto);
         saveButton = findViewById(R.id.saveButton);
+        toggleButton = findViewById(R.id.toggleButton);
+
+        toggleButton.setChecked(false);
+        quantidadeProduto.setHint("Quantidade:");
+        quantidadeProduto.setInputType(android.text.InputType.TYPE_CLASS_NUMBER); // Iniciar aceitando somente inteiros
+
+        toggleButton.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
+                // Quando o toggleButton estiver marcado (modo "Peso")
+                quantidadeProduto.setHint("Peso:");
+                quantidadeProduto.setInputType(android.text.InputType.TYPE_CLASS_NUMBER | android.text.InputType.TYPE_NUMBER_FLAG_DECIMAL); // Aceitar números decimais
+            } else {
+                // Quando o toggleButton estiver desmarcado (modo "Quantidade")
+                quantidadeProduto.setHint("Quantidade:");
+                quantidadeProduto.setInputType(android.text.InputType.TYPE_CLASS_NUMBER); // Aceitar somente inteiros
+            }
+        });
+
 
         ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
@@ -98,6 +118,11 @@ public class UploadActivity extends AppCompatActivity {
         });
     }
     public void saveData(){
+        if (uri == null){ // Fecha o UploadActivity ao não selecionar uma imagem para evitar Crash
+            Toast.makeText(UploadActivity.this, "Preenha o campo de imagem!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("Android Images")
                 .child(Objects.requireNonNull(uri.getLastPathSegment()));
 
@@ -128,13 +153,32 @@ public class UploadActivity extends AppCompatActivity {
 
         String nome = nomeProduto.getText().toString();
         String quant = quantidadeProduto.getText().toString();
+        float quantidadeValor = Float.parseFloat(quant);
+        String sufixo;
 
-        if (nome.isEmpty() || quant.isEmpty()) {
-            Toast.makeText(this, "Please fill out all fields", Toast.LENGTH_SHORT).show();
+        if (nome.isEmpty() || quant.isEmpty()) { // Impossibilita de enviar nome ou quantidade Vazio
+            Toast.makeText(this, "Por favor preencha todos os campos.", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        DataClass dataClass = new DataClass(nome, quant, imageURL);
+
+        if (toggleButton.isChecked()) {
+            // Quando estiver no modo "Peso"
+            if (quantidadeValor > 10) {
+                sufixo = " gramas"; // Define o sufixo como gramas
+                quant = String.valueOf((int) quantidadeValor); // Remove casas decimais, se necessário
+            } else {
+                sufixo = " kg"; // Define o sufixo como kg
+            }
+        } else {
+            // Quando estiver no modo "Quantidade"
+            sufixo = " unidades";
+        }
+        String textoComSufixo = quant + sufixo;
+
+
+
+        DataClass dataClass = new DataClass(nome, textoComSufixo, imageURL);
 
         // Formatar a data para um formato seguro para o Firebase
         String currentDate = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Calendar.getInstance().getTime());

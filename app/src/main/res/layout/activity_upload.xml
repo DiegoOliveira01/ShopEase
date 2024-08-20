@@ -18,7 +18,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.941">
+        app:layout_constraintVertical_bias="0.985">
 
 
     </View>
@@ -40,17 +40,18 @@
 
     <ImageView
         android:id="@+id/uploadimg"
-        android:layout_width="227dp"
-        android:layout_height="149dp"
+        android:layout_width="232dp"
+        android:layout_height="177dp"
         android:clickable="true"
         android:contentDescription="IMG"
+        android:scaleType="fitCenter"
         android:src="@mipmap/upload_image_round"
         app:layout_constraintBottom_toBottomOf="@+id/view2"
         app:layout_constraintEnd_toEndOf="@+id/view2"
-        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="@+id/view2"
         app:layout_constraintTop_toBottomOf="@+id/textView7"
-        app:layout_constraintVertical_bias="0.084" />
+        app:layout_constraintVertical_bias="0.047" />
 
     <EditText
         android:id="@+id/nomeProduto"
@@ -71,16 +72,16 @@
         android:id="@+id/quantidadeProduto"
         android:layout_width="265dp"
         android:layout_height="56dp"
-        android:ems="10"
         android:background="@drawable/blue_border"
-        android:paddingLeft="12dp"
-        android:inputType="text"
+        android:ems="10"
         android:hint="Quantidade ou peso:"
+        android:inputType="text"
+        android:paddingLeft="12dp"
         app:layout_constraintBottom_toBottomOf="@+id/view2"
         app:layout_constraintEnd_toEndOf="@+id/view2"
         app:layout_constraintStart_toStartOf="@+id/view2"
         app:layout_constraintTop_toBottomOf="@+id/nomeProduto"
-        app:layout_constraintVertical_bias="0.184" />
+        app:layout_constraintVertical_bias="0.197" />
 
     <Button
         android:id="@+id/saveButton"
@@ -117,17 +118,35 @@
         android:id="@+id/textView3"
         android:layout_width="229dp"
         android:layout_height="51dp"
-        android:text="Quantidade ou peso do produto:"
         android:gravity="bottom"
-        android:textSize="20dp"
-        android:textStyle="bold"
         android:paddingLeft="3.8dp"
         android:paddingBottom="6dp"
+        android:text="Quantidade ou peso do produto:"
+        android:textSize="20dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/quantidadeProduto"
         app:layout_constraintEnd_toEndOf="@+id/view2"
         app:layout_constraintHorizontal_bias="0.376"
         app:layout_constraintStart_toStartOf="@+id/view2"
         app:layout_constraintTop_toBottomOf="@+id/nomeProduto"
         app:layout_constraintVertical_bias="1.0" />
+
+    <ToggleButton
+        android:id="@+id/toggleButton"
+        android:layout_width="106dp"
+        android:layout_height="33dp"
+        android:layout_marginBottom="60dp"
+        android:background="@drawable/rounded_top_bottom"
+        android:backgroundTint="@color/white"
+        android:text="ToggleButton"
+        android:textOff="Quantidade"
+        android:textOn="Peso"
+        android:textSize="12dp"
+        app:layout_constraintBottom_toTopOf="@+id/saveButton"
+        app:layout_constraintEnd_toEndOf="@+id/view2"
+        app:layout_constraintHorizontal_bias="0.769"
+        app:layout_constraintStart_toStartOf="@+id/view2"
+        app:layout_constraintTop_toTopOf="@+id/view2"
+        app:layout_constraintVertical_bias="0.753" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
