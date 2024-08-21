@@ -6,9 +6,12 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
@@ -49,6 +52,8 @@ public class UpdateActivity extends AppCompatActivity {
     Uri uri;
     DatabaseReference databaseReference;
     StorageReference storageReference;
+    Spinner updateCategorySpinner;
+    String selectedCategory; // Para armazenar a categoria selecionada
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +70,15 @@ public class UpdateActivity extends AppCompatActivity {
         updateImage = findViewById(R.id.updateImage);
         updateTitle = findViewById(R.id.updateNome);
         updateToggleButton = findViewById(R.id.updateToggleButton);
+        updateCategorySpinner = findViewById(R.id.updateCategorySpinner); // Spinner
+
+        // Configuração do Spinner
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
+                this,
+                R.array.categorias_array, // Certifique-se de que esse array existe no strings.xml
+                android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        updateCategorySpinner.setAdapter(adapter);
 
         updateToggleButton.setChecked(false);
         updateDesc.setInputType(android.text.InputType.TYPE_CLASS_NUMBER); // Iniciar aceitando somente inteiros
@@ -105,11 +119,27 @@ public class UpdateActivity extends AppCompatActivity {
             String quantidadeComSufixo = bundle.getString("quantidadeProduto");
             String quantidadeSemSufixo = removerSufixo(quantidadeComSufixo);
             updateDesc.setText(quantidadeSemSufixo);
+
+            // Armazenar valores antigos
             key = bundle.getString("key");
             oldImageURL = bundle.getString("imagemProduto");
         }
-        databaseReference = FirebaseDatabase.getInstance().getReference("produtos").child(key);
 
+        // Registrar listener para mudanças na categoria
+        updateCategorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectedCategory = parent.getItemAtPosition(position).toString();
+                Log.d("UpdateData", "Categoria selecionada no onItemSelected: " + selectedCategory);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // Caso nada seja selecionado, podemos manter a categoria atual
+            }
+        });
+
+        databaseReference = FirebaseDatabase.getInstance().getReference("produtos").child(key);
         updateImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -123,6 +153,7 @@ public class UpdateActivity extends AppCompatActivity {
             public void onClick(View view) {
                 saveData();
                 Intent intent = new Intent(UpdateActivity.this, MainActivity.class);
+                intent.putExtra("categoria", "Frios e Laticínios"); // Exemplo de valor
                 startActivity(intent);
 
             }
@@ -168,7 +199,7 @@ public class UpdateActivity extends AppCompatActivity {
         desc = updateDesc.getText().toString().trim();
         float quantidadeValor = Float.parseFloat(desc);
         String sufixo;
-
+        // selectedCategory = updateCategorySpinner.getSelectedItem().toString(); // Obter a categoria selecionada
 
         if (title.isEmpty() || desc.isEmpty()) {
             Toast.makeText(this, "Por favor preencha todos os campos.", Toast.LENGTH_SHORT).show();
@@ -190,7 +221,13 @@ public class UpdateActivity extends AppCompatActivity {
         }
         String textoComSufixo = desc + sufixo;
 
-        DataClass dataClass = new DataClass(title, textoComSufixo, imageUrl);
+        // Certifique-se de que a categoria não está vazia
+        if (selectedCategory == null || selectedCategory.isEmpty()) {
+            Toast.makeText(this, "Por favor selecione uma categoria.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        DataClass dataClass = new DataClass(title, textoComSufixo, imageUrl, selectedCategory);
 
         databaseReference.setValue(dataClass).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override

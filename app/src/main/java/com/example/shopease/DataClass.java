@@ -36,10 +36,11 @@ public class DataClass {
     }
 
 
-    public DataClass(String nomeProduto, String quantidadeProduto, String imagemProduto) {
+    public DataClass(String nomeProduto, String quantidadeProduto, String imagemProduto, String categoria) {
         this.nomeProduto = nomeProduto;
         this.quantidadeProduto = quantidadeProduto;
         this.imagemProduto = imagemProduto;
+        this.categoria = categoria;
     }
     public DataClass(){
 

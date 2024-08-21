@@ -5,8 +5,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
     android:background="@drawable/background_tela_inicial"
+    android:orientation="horizontal"
     tools:context=".UploadActivity">
 
     <View
@@ -28,15 +28,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Upload da imagem"
-        android:textSize="24dp"
+        android:text="Selecione uma imagem:"
+        android:textSize="19dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/view2"
         app:layout_constraintEnd_toEndOf="@+id/view2"
-        app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="@+id/view2"
         app:layout_constraintTop_toTopOf="@+id/view2"
-        app:layout_constraintVertical_bias="0.061" />
+        app:layout_constraintVertical_bias="0.101" />
 
     <ImageView
         android:id="@+id/uploadimg"
@@ -51,18 +50,18 @@
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="@+id/view2"
         app:layout_constraintTop_toBottomOf="@+id/textView7"
-        app:layout_constraintVertical_bias="0.047" />
+        app:layout_constraintVertical_bias="0.014" />
 
     <EditText
         android:id="@+id/nomeProduto"
         android:layout_width="265dp"
         android:layout_height="56dp"
-        android:layout_marginTop="76dp"
-        android:ems="10"
+        android:layout_marginTop="64dp"
         android:background="@drawable/blue_border"
-        android:paddingLeft="12dp"
-        android:inputType="text"
+        android:ems="10"
         android:hint="Nome:"
+        android:inputType="text"
+        android:paddingLeft="12dp"
         android:tooltipText="Nome"
         app:layout_constraintEnd_toEndOf="@+id/view2"
         app:layout_constraintStart_toStartOf="@+id/view2"
@@ -112,7 +111,7 @@
         app:layout_constraintHorizontal_bias="0.376"
         app:layout_constraintStart_toStartOf="@+id/view2"
         app:layout_constraintTop_toBottomOf="@+id/uploadimg"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.64" />
 
     <TextView
         android:id="@+id/textView3"
@@ -149,18 +148,50 @@
         app:layout_constraintTop_toTopOf="@+id/view2"
         app:layout_constraintVertical_bias="0.753" />
 
-    <EditText
-        android:id="@+id/categoriaProduto"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <Spinner
+        android:id="@+id/categoriaProdutoSpinner"
+        android:layout_width="265dp"
+        android:layout_height="56dp"
+        android:background="@drawable/blue_border"
         android:ems="10"
-        android:inputType="text"
-        android:hint="Categoria"
         app:layout_constraintBottom_toTopOf="@+id/saveButton"
         app:layout_constraintEnd_toEndOf="@+id/view2"
-        app:layout_constraintHorizontal_bias="0.333"
         app:layout_constraintStart_toStartOf="@+id/view2"
         app:layout_constraintTop_toBottomOf="@+id/quantidadeProduto"
-        app:layout_constraintVertical_bias="0.165" />
+        app:layout_constraintVertical_bias="0.46" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="245dp"
+        android:layout_height="61dp"
+        android:gravity="bottom"
+        android:paddingLeft="3.8dp"
+        android:paddingBottom="6dp"
+        android:text="Selecione uma categoria para o produto:"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/categoriaProdutoSpinner"
+        app:layout_constraintEnd_toEndOf="@+id/view2"
+        app:layout_constraintHorizontal_bias="0.423"
+        app:layout_constraintStart_toStartOf="@+id/view2"
+        app:layout_constraintTop_toBottomOf="@+id/quantidadeProduto"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="374dp"
+        android:layout_height="45dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/bottom_black_line"
+        android:gravity="center"
+        android:text="Cadastro De Produto"
+        android:textSize="24dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/textView7"
+        app:layout_constraintEnd_toEndOf="@+id/view2"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/view2"
+        app:layout_constraintTop_toTopOf="@+id/view2"
+        app:layout_constraintVertical_bias="0.521" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

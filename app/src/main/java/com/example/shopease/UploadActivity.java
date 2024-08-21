@@ -8,9 +8,11 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.Editable;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
@@ -44,10 +46,11 @@ public class UploadActivity extends AppCompatActivity {
 
     ImageView uploadimg;
     Button saveButton;
-    EditText nomeProduto, quantidadeProduto, categoriaProduto;
+    EditText nomeProduto, quantidadeProduto;
     String imageURL;
     Uri uri;
     ToggleButton toggleButton;
+    Spinner categoriaProdutoSpinner;
 
 
     @Override
@@ -66,8 +69,17 @@ public class UploadActivity extends AppCompatActivity {
         quantidadeProduto = findViewById(R.id.quantidadeProduto);
         saveButton = findViewById(R.id.saveButton);
         toggleButton = findViewById(R.id.toggleButton);
-        categoriaProduto = findViewById(R.id.categoriaProduto);
+        categoriaProdutoSpinner = findViewById(R.id.categoriaProdutoSpinner);
 
+        // Lista de categorias para o Spinner de produto
+        String[] categorias = {"Selecione uma categoria", "Frios e Laticinios", "Biscoitos", "Massas", "Carnes", "Fruta"};
+
+        // Adapter para o Spinner
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, categorias);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        categoriaProdutoSpinner.setAdapter(adapter);
+
+        // Lógica do botão de Peso/Quantidade
         toggleButton.setChecked(false);
         quantidadeProduto.setHint("Quantidade:");
         quantidadeProduto.setInputType(android.text.InputType.TYPE_CLASS_NUMBER); // Iniciar aceitando somente inteiros
@@ -156,7 +168,12 @@ public class UploadActivity extends AppCompatActivity {
         String quant = quantidadeProduto.getText().toString();
         float quantidadeValor = Float.parseFloat(quant);
         String sufixo;
-        String categoria = categoriaProduto.getText().toString(); // Obtenha a categoria
+        String categoria = categoriaProdutoSpinner.getSelectedItem().toString(); // Obter a categoria do produto pelo Spinner
+
+        if ("Selecione uma categoria".equals(categoria)) { // Impossibilita de enviar categoria Vazia
+            Toast.makeText(this, "Por favor, selecione uma categoria.", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         if (nome.isEmpty() || quant.isEmpty()) { // Impossibilita de enviar nome ou quantidade Vazio
             Toast.makeText(this, "Por favor preencha todos os campos.", Toast.LENGTH_SHORT).show();
@@ -180,7 +197,7 @@ public class UploadActivity extends AppCompatActivity {
 
 
 
-        DataClass dataClass = new DataClass(nome, textoComSufixo, imageURL);
+        DataClass dataClass = new DataClass(nome, textoComSufixo, imageURL, categoria);
         dataClass.setCategoria(categoria); // Defina a categoria
 
         // Formatar a data para um formato seguro para o Firebase

@@ -163,6 +163,7 @@ public class MainActivity extends AppCompatActivity {
     }
     public void searchList(String text){
         ArrayList<DataClass> searchList = new ArrayList<>();
+        categorySpinner.setSelection(categories.indexOf("Todas"));
         for (DataClass dataClass: dataList){
             if (dataClass.getNomeProduto().toLowerCase().contains(text.toLowerCase())){
                 searchList.add(dataClass);

@@ -23,6 +23,18 @@
 
     </View>
 
+    <Spinner
+        android:id="@+id/updateCategorySpinner"
+        android:layout_width="265dp"
+        android:layout_height="56dp"
+        android:background="@drawable/blue_border"
+        android:ems="10"
+        app:layout_constraintBottom_toTopOf="@+id/updateButton"
+        app:layout_constraintEnd_toEndOf="@+id/view2"
+        app:layout_constraintStart_toStartOf="@+id/view2"
+        app:layout_constraintTop_toBottomOf="@+id/updateQuant"
+        app:layout_constraintVertical_bias="0.243" />
+
     <ToggleButton
         android:id="@+id/updateToggleButton"
         android:layout_width="106dp"
