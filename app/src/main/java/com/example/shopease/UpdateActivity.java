@@ -54,6 +54,7 @@ public class UpdateActivity extends AppCompatActivity {
     StorageReference storageReference;
     Spinner updateCategorySpinner;
     String selectedCategory; // Para armazenar a categoria selecionada
+    Spinner categoriaProdutoSpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,15 +71,14 @@ public class UpdateActivity extends AppCompatActivity {
         updateImage = findViewById(R.id.updateImage);
         updateTitle = findViewById(R.id.updateNome);
         updateToggleButton = findViewById(R.id.updateToggleButton);
-        updateCategorySpinner = findViewById(R.id.updateCategorySpinner); // Spinner
+        categoriaProdutoSpinner = findViewById(R.id.updateCategorySpinner);
+
+        String[] categorias = {"Selecione uma categoria", "Frios e Laticinios", "Biscoitos", "Massas", "Carnes", "Fruta"};
 
         // Configuração do Spinner
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
-                this,
-                R.array.categorias_array, // Certifique-se de que esse array existe no strings.xml
-                android.R.layout.simple_spinner_item);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, categorias);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        updateCategorySpinner.setAdapter(adapter);
+        categoriaProdutoSpinner.setAdapter(adapter);
 
         updateToggleButton.setChecked(false);
         updateDesc.setInputType(android.text.InputType.TYPE_CLASS_NUMBER); // Iniciar aceitando somente inteiros
@@ -126,7 +126,7 @@ public class UpdateActivity extends AppCompatActivity {
         }
 
         // Registrar listener para mudanças na categoria
-        updateCategorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        categoriaProdutoSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 selectedCategory = parent.getItemAtPosition(position).toString();
@@ -199,13 +199,18 @@ public class UpdateActivity extends AppCompatActivity {
         desc = updateDesc.getText().toString().trim();
         float quantidadeValor = Float.parseFloat(desc);
         String sufixo;
-        // selectedCategory = updateCategorySpinner.getSelectedItem().toString(); // Obter a categoria selecionada
+        String categoria = categoriaProdutoSpinner.getSelectedItem().toString(); // Obter a categoria do produto pelo Spinner
+
+        if ("Selecione uma categoria".equals(categoria)) { // Impossibilita de enviar categoria Vazia
+            Toast.makeText(this, "Por favor, selecione uma categoria.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
 
         if (title.isEmpty() || desc.isEmpty()) {
             Toast.makeText(this, "Por favor preencha todos os campos.", Toast.LENGTH_SHORT).show();
             return;
         }
-
 
         if (updateToggleButton.isChecked()) {
             // Quando estiver no modo "Peso"
@@ -220,12 +225,6 @@ public class UpdateActivity extends AppCompatActivity {
             sufixo = " unidades";
         }
         String textoComSufixo = desc + sufixo;
-
-        // Certifique-se de que a categoria não está vazia
-        if (selectedCategory == null || selectedCategory.isEmpty()) {
-            Toast.makeText(this, "Por favor selecione uma categoria.", Toast.LENGTH_SHORT).show();
-            return;
-        }
 
         DataClass dataClass = new DataClass(title, textoComSufixo, imageUrl, selectedCategory);
 

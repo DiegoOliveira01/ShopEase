@@ -10,6 +10,38 @@
     tools:context=".DetailActivity">
 
 
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="65dp"
+        android:layout_height="24dp"
+        android:layout_marginBottom="72dp"
+        android:gravity="center"
+        android:text="Coringa"
+        android:textColor="#001E73"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.045"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editButton"
+        app:layout_constraintVertical_bias="0.018" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="61dp"
+        android:layout_height="21dp"
+        android:layout_marginBottom="72dp"
+        android:gravity="center"
+        android:text="Deletar"
+        android:textColor="#8F000C"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.954"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/deleteButton"
+        app:layout_constraintVertical_bias="0.0" />
+
     <com.github.clans.fab.FloatingActionButton
         android:id="@+id/deleteButton"
         android:layout_width="wrap_content"
@@ -63,12 +95,12 @@
         android:id="@+id/view5"
         android:layout_width="382dp"
         android:layout_height="575dp"
+        android:background="@drawable/rounded_top_bottom"
+        android:outlineAmbientShadowColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.551"
         app:layout_constraintStart_toStartOf="parent"
-        android:background="@drawable/rounded_top_bottom"
-        android:outlineAmbientShadowColor="@color/black"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.129" />
 
@@ -106,18 +138,46 @@
 
     <TextView
         android:id="@+id/detailDesc"
-        android:layout_width="341dp"
-        android:layout_height="103dp"
+        android:layout_width="111dp"
+        android:layout_height="28dp"
         android:layout_gravity="center"
-        android:padding="20dp"
         android:text="Description"
         android:textColor="@color/light_blue"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/view5"
         app:layout_constraintEnd_toEndOf="@+id/view5"
-        app:layout_constraintHorizontal_bias="0.463"
+        app:layout_constraintHorizontal_bias="0.752"
         app:layout_constraintStart_toStartOf="@+id/view5"
         app:layout_constraintTop_toTopOf="@+id/view5"
-        app:layout_constraintVertical_bias="0.546" />
+        app:layout_constraintVertical_bias="0.493" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="56dp"
+        android:layout_height="23dp"
+        android:layout_marginBottom="72dp"
+        android:gravity="center"
+        android:text="Editar"
+        android:textColor="#003E01"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editButton"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="146dp"
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:text="Quantidade/Peso:"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toTopOf="@+id/editButton"
+        app:layout_constraintEnd_toEndOf="@+id/view5"
+        app:layout_constraintHorizontal_bias="0.203"
+        app:layout_constraintStart_toStartOf="@+id/view5"
+        app:layout_constraintTop_toBottomOf="@+id/detailImage"
+        app:layout_constraintVertical_bias="0.079" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
