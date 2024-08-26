@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <!-- Definindo a linha azul na parte inferior -->
+    <stroke
+        android:width="2dp"
+        android:color="@color/light_blue" />
+
+    <!-- Deixando os outros lados sem borda -->
+    <padding
+        android:left="0dp"
+        android:top="0dp"
+        android:right="0dp"
+        android:bottom="-2dp" />
+
+    <!-- Evitando cantos arredondados -->
+    <corners android:radius="0dp" />
+
+</shape>

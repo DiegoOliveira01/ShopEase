@@ -23,6 +23,7 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -56,6 +57,7 @@ public class UploadActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_upload);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
@@ -72,7 +74,7 @@ public class UploadActivity extends AppCompatActivity {
         categoriaProdutoSpinner = findViewById(R.id.categoriaProdutoSpinner);
 
         // Lista de categorias para o Spinner de produto
-        String[] categorias = {"Selecione uma categoria", "Frios e Laticinios", "Biscoitos", "Massas", "Carnes", "Fruta"};
+        String[] categorias = {"Selecione uma categoria", "Secos/Mercearia" ,"Frios e Laticinios", "Sucos e Bebidas", "Biscoitos", "Doces e Guloseimas", "Massas", "Temperos e Molhos", "Óleos e Gorduras", "Carnes", "Congelados", "Peixes" ,"Hortifruti", "Limpeza", "Higiene Pessoal"};
 
         // Adapter para o Spinner
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, categorias);

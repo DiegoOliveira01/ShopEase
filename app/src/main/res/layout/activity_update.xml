@@ -16,6 +16,7 @@
         android:background="@drawable/rounded_top"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.527"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.941">
@@ -27,7 +28,7 @@
         android:id="@+id/updateCategorySpinner"
         android:layout_width="265dp"
         android:layout_height="56dp"
-        android:background="@drawable/blue_border"
+        android:background="@drawable/black_border_white_back"
         android:ems="10"
         app:layout_constraintBottom_toTopOf="@+id/updateButton"
         app:layout_constraintEnd_toEndOf="@+id/view2"
@@ -47,32 +48,35 @@
         android:textSize="12dp"
         app:layout_constraintBottom_toTopOf="@+id/updateButton"
         app:layout_constraintEnd_toEndOf="@+id/view2"
-        app:layout_constraintHorizontal_bias="0.754"
+        app:layout_constraintHorizontal_bias="0.736"
         app:layout_constraintStart_toStartOf="@+id/view2"
         app:layout_constraintTop_toTopOf="@+id/view2"
-        app:layout_constraintVertical_bias="0.68" />
+        app:layout_constraintVertical_bias="0.682" />
 
     <TextView
         android:id="@+id/textView7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="373dp"
+        android:layout_height="42dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/bottom_black_line"
         android:gravity="center"
-        android:text="Upload da imagem"
+        android:text="Atualização De Produto"
         android:textSize="24dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/view2"
         app:layout_constraintEnd_toEndOf="@+id/view2"
-        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/view2"
         app:layout_constraintTop_toTopOf="@+id/view2"
-        app:layout_constraintVertical_bias="0.061" />
+        app:layout_constraintVertical_bias="0.019" />
 
     <ImageView
         android:id="@+id/updateImage"
-        android:layout_width="227dp"
-        android:layout_height="149dp"
+        android:layout_width="232dp"
+        android:layout_height="177dp"
         android:clickable="true"
         android:contentDescription="IMG"
+        android:scaleType="fitCenter"
         android:src="@mipmap/upload_image_round"
         app:layout_constraintBottom_toBottomOf="@+id/view2"
         app:layout_constraintEnd_toEndOf="@+id/view2"
@@ -87,7 +91,7 @@
         android:layout_height="56dp"
         android:layout_marginTop="76dp"
         android:ems="10"
-        android:background="@drawable/blue_border"
+        android:background="@drawable/black_border_white_back"
         android:paddingLeft="12dp"
         android:inputType="text"
         android:hint="Nome:"
@@ -100,11 +104,11 @@
         android:id="@+id/updateQuant"
         android:layout_width="265dp"
         android:layout_height="56dp"
+        android:background="@drawable/black_border_white_back"
         android:ems="10"
-        android:background="@drawable/blue_border"
-        android:paddingLeft="12dp"
-        android:inputType="text"
         android:hint="Quantidade ou peso:"
+        android:inputType="text"
+        android:paddingLeft="12dp"
         app:layout_constraintBottom_toBottomOf="@+id/view2"
         app:layout_constraintEnd_toEndOf="@+id/view2"
         app:layout_constraintStart_toStartOf="@+id/view2"
@@ -158,5 +162,20 @@
         app:layout_constraintStart_toStartOf="@+id/view2"
         app:layout_constraintTop_toBottomOf="@+id/updateNome"
         app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Selecione uma imagem:"
+        android:textSize="19dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/updateImage"
+        app:layout_constraintEnd_toEndOf="@+id/view2"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="@+id/view2"
+        app:layout_constraintTop_toBottomOf="@+id/textView7"
+        app:layout_constraintVertical_bias="0.666" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
