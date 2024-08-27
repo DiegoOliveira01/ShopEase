@@ -32,6 +32,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -66,6 +68,8 @@ public class UploadActivity extends AppCompatActivity {
             return insets;
         });
 
+
+
         uploadimg = findViewById(R.id.uploadimg);
         nomeProduto = findViewById(R.id.nomeProduto);
         quantidadeProduto = findViewById(R.id.quantidadeProduto);
@@ -74,7 +78,7 @@ public class UploadActivity extends AppCompatActivity {
         categoriaProdutoSpinner = findViewById(R.id.categoriaProdutoSpinner);
 
         // Lista de categorias para o Spinner de produto
-        String[] categorias = {"Selecione uma categoria", "Secos/Mercearia" ,"Frios e Laticinios", "Sucos e Bebidas", "Biscoitos", "Doces e Guloseimas", "Massas", "Temperos e Molhos", "Óleos e Gorduras", "Carnes", "Congelados", "Peixes" ,"Hortifruti", "Limpeza", "Higiene Pessoal"};
+        String[] categorias = {"Selecione uma categoria", "Secos/Mercearia" ,"Frios e Laticinios", "Sucos e Bebidas", "Biscoitos", "Doces e Guloseimas", "Massas", "Temperos e Molhos", "Óleos e Gorduras", "Carnes", "Congelados", "Peixes" ,"Hortifruti", "Limpeza", "Higiene Pessoal", "Diversos"};
 
         // Adapter para o Spinner
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, categorias);
@@ -171,6 +175,9 @@ public class UploadActivity extends AppCompatActivity {
         float quantidadeValor = Float.parseFloat(quant);
         String sufixo;
         String categoria = categoriaProdutoSpinner.getSelectedItem().toString(); // Obter a categoria do produto pelo Spinner
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        assert user != null;
+        String userName = user.getDisplayName();
 
         if ("Selecione uma categoria".equals(categoria)) { // Impossibilita de enviar categoria Vazia
             Toast.makeText(this, "Por favor, selecione uma categoria.", Toast.LENGTH_SHORT).show();
@@ -199,7 +206,7 @@ public class UploadActivity extends AppCompatActivity {
 
 
 
-        DataClass dataClass = new DataClass(nome, textoComSufixo, imageURL, categoria);
+        DataClass dataClass = new DataClass(nome, textoComSufixo, imageURL, categoria, userName);
         dataClass.setCategoria(categoria); // Defina a categoria
 
         // Formatar a data para um formato seguro para o Firebase

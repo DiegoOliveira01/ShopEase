@@ -41,6 +41,10 @@ dependencies {
     implementation(libs.firebase.database)
 
 
+    implementation ("com.google.firebase:firebase-auth:22.1.0")
+
+    implementation ("com.google.android.gms:play-services-auth:20.7.0")
+
     implementation ("com.firebaseui:firebase-ui-database:8.0.2")
 
     implementation("de.hdodenhof:circleimageview:3.1.0")

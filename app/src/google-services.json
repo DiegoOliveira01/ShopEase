@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "526161972116",
+    "firebase_url": "https://shopease-4d5e3-default-rtdb.firebaseio.com",
+    "project_id": "shopease-4d5e3",
+    "storage_bucket": "shopease-4d5e3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:526161972116:android:c3d1a21fa07c1089359d81",
+        "android_client_info": {
+          "package_name": "com.example.shopease"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "526161972116-k2689ogorln9gh8132s9mkbi2fqq1egr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.shopease",
+            "certificate_hash": "57c1dc1af2a637401a1c607ec8e7a5ccf3227c36"
+          }
+        },
+        {
+          "client_id": "526161972116-250g4v8qv1iokffs15j6j3qt2iq0d4sm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCrO9CjV3EQOJQIhlg6nHA6JbQssnsUEfA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "526161972116-250g4v8qv1iokffs15j6j3qt2iq0d4sm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -8,6 +8,8 @@ public class DataClass {
     private String key;
     private String categoria;  // Campo de categoria
 
+    private String nomeUsuario;
+
     public String getKey() {
         return key;
     }
@@ -35,12 +37,17 @@ public class DataClass {
         this.categoria = categoria;
     }
 
+    public String getNomeUsuario() {
+        return nomeUsuario;
+    }
 
-    public DataClass(String nomeProduto, String quantidadeProduto, String imagemProduto, String categoria) {
+
+    public DataClass(String nomeProduto, String quantidadeProduto, String imagemProduto, String categoria, String nomeUsuario) {
         this.nomeProduto = nomeProduto;
         this.quantidadeProduto = quantidadeProduto;
         this.imagemProduto = imagemProduto;
         this.categoria = categoria;
+        this.nomeUsuario = nomeUsuario;
     }
     public DataClass(){
 

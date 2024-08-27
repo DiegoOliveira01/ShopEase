@@ -29,7 +29,7 @@ import org.w3c.dom.Text;
 
 public class DetailActivity extends AppCompatActivity {
 
-    TextView detailDesc, detailTitle;
+    TextView detailDesc, detailTitle, detailUser;
     ImageView detailImage;
     FloatingActionButton deleteButton, editButton;
     String key = "";
@@ -46,6 +46,7 @@ public class DetailActivity extends AppCompatActivity {
             return insets;
         });
         detailDesc = findViewById(R.id.detailDesc);
+        detailUser = findViewById(R.id.detailUser);
         detailImage = findViewById(R.id.detailImage);
         detailTitle = findViewById(R.id.detailTitle);
         deleteButton = findViewById(R.id.deleteButton);
@@ -57,6 +58,7 @@ public class DetailActivity extends AppCompatActivity {
             detailTitle.setText(bundle.getString("NomeProduto"));
             key = bundle.getString("key");
             imageUrl = bundle.getString("Image");
+            detailUser.setText(bundle.getString("NomeUsuario"));
             Glide.with(this).load(bundle.getString("Image")).into(detailImage);
         }
         deleteButton.setOnClickListener(new View.OnClickListener() {
@@ -102,7 +104,8 @@ public class DetailActivity extends AppCompatActivity {
                         .putExtra("nomeProduto", detailTitle.getText().toString())
                         .putExtra("quantidadeProduto", detailDesc.getText().toString())
                         .putExtra("imagemProduto", imageUrl)
-                        .putExtra("key", key);
+                        .putExtra("key", key)
+                        .putExtra("nomeUsuario", detailUser.getText().toString());
                 startActivity(intent);
 
 

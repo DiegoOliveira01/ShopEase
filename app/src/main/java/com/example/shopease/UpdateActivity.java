@@ -33,6 +33,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -75,7 +77,7 @@ public class UpdateActivity extends AppCompatActivity {
         updateToggleButton = findViewById(R.id.updateToggleButton);
         categoriaProdutoSpinner = findViewById(R.id.updateCategorySpinner);
 
-        String[] categorias = {"Selecione uma categoria", "Secos/Mercearia" ,"Frios e Laticinios", "Sucos e Bebidas", "Biscoitos", "Doces e Guloseimas", "Massas", "Temperos e Molhos", "Óleos e Gorduras", "Carnes", "Congelados", "Peixes" ,"Hortifruti", "Limpeza", "Higiene Pessoal"};
+        String[] categorias = {"Selecione uma categoria", "Secos/Mercearia" ,"Frios e Laticinios", "Sucos e Bebidas", "Biscoitos", "Doces e Guloseimas", "Massas", "Temperos e Molhos", "Óleos e Gorduras", "Carnes", "Congelados", "Peixes" ,"Hortifruti", "Limpeza", "Higiene Pessoal", "Diversos"};
 
         // Configuração do Spinner
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, categorias);
@@ -202,6 +204,9 @@ public class UpdateActivity extends AppCompatActivity {
         float quantidadeValor = Float.parseFloat(desc);
         String sufixo;
         String categoria = categoriaProdutoSpinner.getSelectedItem().toString(); // Obter a categoria do produto pelo Spinner
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        assert user != null;
+        String userName = user.getDisplayName();
 
         if ("Selecione uma categoria".equals(categoria)) { // Impossibilita de enviar categoria Vazia
             Toast.makeText(this, "Por favor, selecione uma categoria.", Toast.LENGTH_SHORT).show();
@@ -228,7 +233,7 @@ public class UpdateActivity extends AppCompatActivity {
         }
         String textoComSufixo = desc + sufixo;
 
-        DataClass dataClass = new DataClass(title, textoComSufixo, imageUrl, selectedCategory);
+        DataClass dataClass = new DataClass(title, textoComSufixo, imageUrl, selectedCategory, userName);
 
         databaseReference.setValue(dataClass).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override

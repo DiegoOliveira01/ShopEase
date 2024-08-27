@@ -1,5 +1,9 @@
 package com.example.shopease;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import android.widget.Toast;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -57,6 +61,20 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
+        // Obtenha o usuário logado
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            // O usuário está logado, pegue o nome dele
+            String userName = user.getDisplayName();
+
+            // Mostra o nome do usuário em uma mensagem Toast
+            Toast.makeText(MainActivity.this, "Bem-vindo De Volta, " + userName + "!", Toast.LENGTH_LONG).show();
+        } else {
+            // O usuário não está logado, redirecione para a tela de login
+            Intent intent = new Intent(MainActivity.this, TelaInicial.class);
+            startActivity(intent);
+            finish();
+        }
 
         fab = findViewById(R.id.fab);
         recyclerView = findViewById(R.id.recylerView);

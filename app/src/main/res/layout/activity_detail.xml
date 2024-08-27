@@ -104,6 +104,25 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.129" />
 
+    <TextView
+        android:id="@+id/detailUser"
+        android:layout_width="131dp"
+        android:layout_height="30dp"
+        android:gravity="left"
+        android:text="UserName"
+        android:textAlignment="gravity"
+        android:textColor="@color/light_blue"
+        android:textSize="16dp"
+        android:paddingTop="2dp"
+        android:ellipsize="end"
+        android:singleLine="true"
+        app:layout_constraintBottom_toBottomOf="@+id/view5"
+        app:layout_constraintEnd_toEndOf="@+id/view5"
+        app:layout_constraintHorizontal_bias="0.087"
+        app:layout_constraintStart_toEndOf="@+id/textView15"
+        app:layout_constraintTop_toTopOf="@+id/view5"
+        app:layout_constraintVertical_bias="0.568" />
+
     <ImageView
         android:id="@+id/detailImage"
         android:layout_width="282dp"
@@ -138,18 +157,20 @@
 
     <TextView
         android:id="@+id/detailDesc"
-        android:layout_width="111dp"
-        android:layout_height="28dp"
-        android:layout_gravity="center"
+        android:layout_width="131dp"
+        android:layout_height="30dp"
         android:text="Description"
+        android:gravity="left"
+        android:textAlignment="gravity"
         android:textColor="@color/light_blue"
-        android:textSize="18sp"
+        android:textSize="16dp"
+        android:paddingTop="3dp"
         app:layout_constraintBottom_toBottomOf="@+id/view5"
         app:layout_constraintEnd_toEndOf="@+id/view5"
-        app:layout_constraintHorizontal_bias="0.752"
-        app:layout_constraintStart_toStartOf="@+id/view5"
+        app:layout_constraintHorizontal_bias="0.087"
+        app:layout_constraintStart_toEndOf="@+id/textView12"
         app:layout_constraintTop_toTopOf="@+id/view5"
-        app:layout_constraintVertical_bias="0.493" />
+        app:layout_constraintVertical_bias="0.483" />
 
     <TextView
         android:id="@+id/textView9"
@@ -170,7 +191,7 @@
         android:id="@+id/textView12"
         android:layout_width="146dp"
         android:layout_height="30dp"
-        android:gravity="center"
+        android:gravity="left"
         android:text="Quantidade/Peso:"
         android:textSize="18dp"
         app:layout_constraintBottom_toTopOf="@+id/editButton"
@@ -179,5 +200,19 @@
         app:layout_constraintStart_toStartOf="@+id/view5"
         app:layout_constraintTop_toBottomOf="@+id/detailImage"
         app:layout_constraintVertical_bias="0.079" />
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="146dp"
+        android:layout_height="30dp"
+        android:gravity="left"
+        android:text="Adicionado por:"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toTopOf="@+id/editButton"
+        app:layout_constraintEnd_toEndOf="@+id/view5"
+        app:layout_constraintHorizontal_bias="0.203"
+        app:layout_constraintStart_toStartOf="@+id/view5"
+        app:layout_constraintTop_toBottomOf="@+id/textView12"
+        app:layout_constraintVertical_bias="0.056" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
